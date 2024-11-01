@@ -10,11 +10,31 @@ npm install makedirp
 ## Usage
 
 ```js
-import { rmrfSync } from 'makedirp'
+import { mkdirpSync, mkdirp } from 'makedirp'
 // or
 import { createRequire } from 'node:module'
 const require = createRequire(import.meta.url)
-const { rmrfSync } = require('makedirp')
+const { mkdirpSync, mkdirp } = require('makedirp')
+
+mkdirpSync(path, mode?)
+
+mkdirpSync([path1, path2], mode?)
+
+mkdirpSync([{ path: path1, mode: 0o777 }, {path: path2}])
+
+const paths = Promise.all([
+  mkdirp('dir1/test'),
+  mkdirp('dir2/config')
+])
+
+console.log(paths)
+
+/*
+[
+	'/workspace/proj/dir1/test',
+	'/workspace/proj/dir2/config'
+]
+*/
 ```
 
 ### Command Line Interface
