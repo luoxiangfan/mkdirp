@@ -1,0 +1,53 @@
+{
+  "name": "makedirp",
+  "version": "1.0.0",
+  "description": "The 'mkdir -p' command implementation for nodejs.Make directory recursively.",
+  "type": "module",
+  "bin": "./dist/bin.mjs",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.cts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "type-check": "tsc --strict --noEmit",
+    "format": "prettier --write src/",
+    "build": "unbuild",
+    "release": "npm publish"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+git@github.com:luoxiangfan/mkdirp.git"
+  },
+  "keywords": [
+    "mkdir",
+    "mkdirp",
+    "mkdir -p",
+    "recursive"
+  ],
+  "author": "lxf <infiniment@163.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luoxiangfan/mkdirp/issues"
+  },
+  "homepage": "https://github.com/luoxiangfan/mkdirp#readme",
+  "devDependencies": {
+    "@types/node": "^22.8.6",
+    "prettier": "^3.3.3",
+    "typescript": "^5.6.3",
+    "unbuild": "^2.0.0"
+  }
+}
