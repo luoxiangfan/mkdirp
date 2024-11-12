@@ -1,7 +1,10 @@
 import fs from 'node:fs';
-import fsPromises from 'node:fs/promises';
 import nodePath from 'node:path';
 import type { MakeDirectoryOptions } from './type.js';
+import {
+  mkdirSyncRecursive,
+  mkdirAsyncRecursive
+} from '@lxf2513/mkdir-recursive';
 
 function isPathValid(path: string): boolean {
   return !/[*\|\[\]=!#$~\n<>:"|?,']/.test(path);
@@ -36,11 +39,11 @@ export async function mkdirp(
 ) {
   checkPath(path);
   try {
-    await fsPromises.mkdir(path, { mode, recursive: true });
+    await mkdirAsyncRecursive(path, mode);
     return absolutePath(path);
   } catch (error) {
     try {
-      const stats = await fsPromises.stat(path);
+      const stats = fs.statSync(path);
       if (!stats.isDirectory()) {
         throw new Error(
           `cannot create directory '${absolutePath(path)}': No such directory`
@@ -64,7 +67,7 @@ export function mkdirpSync(
   function makeSync(pth: string, makeMode?: MakeDirectoryOptions['mode']) {
     checkPath(pth);
     try {
-      fs.mkdirSync(pth, { mode: makeMode, recursive: true });
+      mkdirSyncRecursive(pth, makeMode);
       paths.push(absolutePath(pth));
     } catch (error) {
       try {
