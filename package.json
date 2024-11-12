@@ -34,8 +34,11 @@
   },
   "keywords": [
     "mkdir",
-    "mkdirp",
+    "makedir",
+    "makedirp",
     "mkdir -p",
+    "directory",
+    "folder",
     "recursive"
   ],
   "author": "lxf <infiniment@163.com>",
