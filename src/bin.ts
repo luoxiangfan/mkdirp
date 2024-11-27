@@ -1,8 +1,10 @@
 #!/usr/bin/env node
 import { createInterface } from 'readline';
 import { mkdirpSync } from './index.js';
-import { name, version } from '../package.json';
+import packageConfig from '../package.json' assert { type: 'json' };
 import type { Mode } from './type.js';
+
+const { name, version } = packageConfig;
 
 const log = (str: string) => {
   console.log('\x1b[31m%s\x1b[0m', str);
