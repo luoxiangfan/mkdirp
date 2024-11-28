@@ -54,6 +54,6 @@
     "unbuild": "^2.0.0"
   },
   "dependencies": {
-    "@lxf2513/mkdir-recursive": "^1.0.1"
+    "@lxf2513/mkdir-recursive": "^1.1.0"
   }
 }
