@@ -1,34 +1,20 @@
-import fs from 'node:fs';
-import nodePath from 'node:path';
+import { existsSync, statSync } from 'node:fs';
+import { resolve } from 'node:path';
 import type { MakeDirectoryOptions } from './type.js';
 import {
   mkdirSyncRecursive,
   mkdirAsyncRecursive
 } from '@lxf2513/mkdir-recursive';
 
-function isPathValid(path: string): boolean {
-  return !/[*\|\[\]=!#$~\n<>:"|?,']/.test(path);
-}
-
-function hasExist(path: string): boolean {
-  return fs.existsSync(path);
-}
-
-function absolutePath(path: string) {
-  return nodePath.resolve(path);
-}
-
 function checkPath(path: string) {
-  if (!isPathValid(path)) {
+  if (!!/[*\|\[\]=!#$~\n<>:"|?,']/.test(path)) {
     throw new Error(
-      `cannot create directory '${absolutePath(path)}': It contains special character(s)`
+      `cannot create directory '${path}': It contains special character(s)`
     );
   }
-  if (hasExist(path)) {
-    if (fs.statSync(path).isFile()) {
-      throw new Error(
-        `cannot create directory '${absolutePath(path)}': File exists`
-      );
+  if (existsSync(path)) {
+    if (statSync(path).isFile()) {
+      throw new Error(`cannot create directory '${path}': File exists`);
     }
   }
 }
@@ -37,22 +23,22 @@ export async function mkdirp(
   path: string,
   mode?: MakeDirectoryOptions['mode']
 ) {
-  checkPath(path);
+  const _path = resolve(path);
+  checkPath(_path);
   try {
     await mkdirAsyncRecursive(path, mode);
-    return absolutePath(path);
+    return _path;
   } catch (error) {
     try {
-      const stats = fs.statSync(path);
-      if (!stats.isDirectory()) {
+      if (!statSync(path).isDirectory()) {
         throw new Error(
-          `cannot create directory '${absolutePath(path)}': No such directory`
+          `cannot create directory '${_path}': No such directory`
         );
       }
     } catch {
       throw error;
     }
-    return absolutePath(path);
+    return _path;
   }
 }
 
@@ -65,15 +51,16 @@ export function mkdirpSync(
 ) {
   const paths: string[] = [];
   function makeSync(pth: string, makeMode?: MakeDirectoryOptions['mode']) {
-    checkPath(pth);
+    const _path = resolve(pth);
+    checkPath(_path);
     try {
       mkdirSyncRecursive(pth, makeMode);
-      paths.push(absolutePath(pth));
+      paths.push(_path);
     } catch (error) {
       try {
-        if (!fs.statSync(pth).isDirectory()) {
+        if (!statSync(pth).isDirectory()) {
           throw new Error(
-            `cannot create directory '${absolutePath(pth)}': No such directory`
+            `cannot create directory '${_path}': No such directory`
           );
         }
       } catch {

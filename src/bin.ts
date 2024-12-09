@@ -1,10 +1,8 @@
 #!/usr/bin/env node
 import { createInterface } from 'readline';
 import { mkdirpSync } from './index.js';
-import packageConfig from '../package.json' assert { type: 'json' };
+import { name, version } from '../package.json';
 import type { Mode } from './type.js';
-
-const { name, version } = packageConfig;
 
 const log = (str: string) => {
   console.log('\x1b[31m%s\x1b[0m', str);
@@ -14,7 +12,7 @@ const helpInfo = () => {
   log(`Try '${name} --help' for more information.`);
 };
 
-export const help = `${name} ${version}
+const help = `${name} ${version}
 
 Usage: ${name} [OPTION]... DIRECTORY...
 Create the DIRECTORY(ies), if they do not already exist.
@@ -87,10 +85,6 @@ const main = async (...args: string[]) => {
 
   return 0;
 };
-main.help = help;
-main.version = version;
-
-export default main;
 
 const args = process.argv.slice(2);
 main(...args).then(
