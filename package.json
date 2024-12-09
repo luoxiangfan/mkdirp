@@ -1,6 +1,6 @@
 {
   "name": "makedirp",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "The 'mkdir -p' command implementation for nodejs.Make directory recursively.",
   "type": "module",
   "bin": "./dist/bin.mjs",
