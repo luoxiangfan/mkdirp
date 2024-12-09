@@ -7,7 +7,7 @@ import {
 } from '@lxf2513/mkdir-recursive';
 
 function checkPath(path: string) {
-  if (!!/[*\|\[\]=!#$~\n<>:"|?,']/.test(path)) {
+  if (!/[*\|\[\]=!#$~\n<>:"|?,']/.test(path)) {
     throw new Error(
       `cannot create directory '${path}': It contains special character(s)`
     );
