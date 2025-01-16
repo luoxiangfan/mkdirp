@@ -48,12 +48,12 @@
   },
   "homepage": "https://github.com/luoxiangfan/mkdirp#readme",
   "devDependencies": {
-    "@types/node": "^22.10.2",
+    "@types/node": "^22.10.7",
     "prettier": "^3.4.2",
-    "typescript": "^5.7.2",
-    "unbuild": "^3.0.1"
+    "typescript": "^5.7.3",
+    "unbuild": "^3.3.1"
   },
   "dependencies": {
-    "@lxf2513/mkdir-recursive": "^1.2.0"
+    "@lxf2513/mkdir-recursive": "^1.2.1"
   }
 }
