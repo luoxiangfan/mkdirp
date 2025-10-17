@@ -48,7 +48,7 @@
   },
   "homepage": "https://github.com/luoxiangfan/mkdirp#readme",
   "devDependencies": {
-    "@types/node": "^24.7.0",
+    "@types/node": "^24.8.1",
     "prettier": "^3.6.2",
     "typescript": "^5.9.3",
     "unbuild": "^3.6.1"
