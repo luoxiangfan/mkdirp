@@ -1,6 +1,6 @@
 {
   "name": "makedirp",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "The 'mkdir -p' command implementation for nodejs.Make directory recursively.",
   "type": "module",
   "bin": "./dist/bin.mjs",
@@ -48,12 +48,12 @@
   },
   "homepage": "https://github.com/luoxiangfan/mkdirp#readme",
   "devDependencies": {
-    "@types/node": "^24.8.1",
+    "@types/node": "^24.10.1",
     "prettier": "^3.6.2",
     "typescript": "^5.9.3",
     "unbuild": "^3.6.1"
   },
   "dependencies": {
-    "@lxf2513/mkdir-recursive": "^1.3.1"
+    "@lxf2513/mkdir-recursive": "^1.3.2"
   }
 }
